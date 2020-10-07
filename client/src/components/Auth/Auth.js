@@ -14,7 +14,6 @@ class Auth extends Component {
         window.location.href = 'https://oauth.vk.com/authorize?'
             +'client_id=7620607&display=page&redirect_uri=http://localhost:3000/auth&scope=friends,offline'
             +'&response_type=code&v=5.124';
-
     }
 
     componentDidMount() {
@@ -29,8 +28,8 @@ class Auth extends Component {
                 },
                 body: JSON.stringify({code})
             })
-                //.then(res => res.json())
-                //.then(data => console.log(data));
+                .then(res => res.json())
+                .then(data => console.log(data));
         }
     }
 
