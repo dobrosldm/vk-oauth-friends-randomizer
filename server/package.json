@@ -1,0 +1,16 @@
+{
+  "name": "server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env APP_ID=7620607 APP_SECRET=LBzU9O5zMtCI3c8r3Gn7 CLIENT_HOST=http://localhost:3000 SERVER_HOST=http://localhost:5000 nodemon server.js"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "express": "~4.16.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2",
+    "nodemon": "^2.0.4"
+  }
+}
