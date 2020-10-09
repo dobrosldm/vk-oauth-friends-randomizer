@@ -1,6 +1,5 @@
 const express = require("express");
 const http = require("http");
-const https = require("https");
 const fetch = require("node-fetch");
 
 const app = express();
@@ -9,19 +8,51 @@ const server = http.createServer(app);
 const port = 5000;
 
 app.use(express.json());
-//app.use(express.static(path.join(__dirname, 'public')));
+
+function formUrl(resource, path, params) {
+    let url = 'https://';
+    url += resource;
+    url += '/' + path;
+    url += '?' + new URLSearchParams(params).toString();
+
+    return url;
+}
+
+async function accessFriendsInfo(access_token) {
+    const params = {
+        count: 5,
+        order: 'random',
+        fields: 'photo_100,last_seen',
+        access_token: access_token,
+        v: '5.124'
+    }
+    const url = formUrl('api.vk.com', 'method/friends.get', params);
+
+    const response = await fetch(url);
+    const json = await response.json();
+    const info = json.response.items;
+
+    return info;
+}
 
 app.post('/oauth',  async (req, res) => {
-    const response = await fetch(`https://oauth.vk.com/access_token?client_id=${process.env.APP_ID}&client_secret=${process.env.APP_SECRET}&redirect_uri=${process.env.CLIENT_HOST}/auth&code=${req.body.code}`);
+    const params = {
+        client_id: process.env.APP_ID,
+        client_secret: process.env.APP_SECRET,
+        redirect_uri: process.env.CLIENT_HOST + '/auth',
+        code: req.body.code
+    }
+    const url = formUrl('oauth.vk.com', 'access_token', params);
+
+    const response = await fetch(url);
     const json = await response.json();
-    const access_token = json.access_token;
+    const accessToken = json.access_token;
 
-    //const response1 = await fetch(`https://api.vk.com/method/friends.search?access_token=${access_token}&v=5.124`);
-    const response1 = await fetch(`https://api.vk.com/method/friends.get?count=5&order=random&fields=photo_100,last_seen&access_token=${access_token}&v=5.124`);
-    const json2 = await response1.json();
-    console.log(json2.response.items);
+    res.json(accessToken);
+});
 
-    res.json(json2.response.items);
+app.post('/content', async (req, res) => {
+    const info = await accessFriendsInfo(accessToken);
 });
 
 server.listen(port, () => console.log(`Listening on port ${port}`));

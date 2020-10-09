@@ -18,7 +18,6 @@ class Auth extends Component {
 
     componentDidMount() {
         const code = new URLSearchParams(window.location.search).get('code');
-        console.log('code - ', code);
 
         if (code) {
             fetch('/oauth', {
@@ -29,7 +28,10 @@ class Auth extends Component {
                 body: JSON.stringify({code})
             })
                 .then(res => res.json())
-                .then(data => console.log(data));
+                .then(data => {
+                    localStorage.setItem('token', data);
+                    this.props.history.push('/content');
+                });
         }
     }
 
