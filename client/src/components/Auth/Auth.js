@@ -17,21 +17,25 @@ class Auth extends Component {
     }
 
     componentDidMount() {
-        const code = new URLSearchParams(window.location.search).get('code');
+        if (!localStorage.getItem('token')) {
+            const code = new URLSearchParams(window.location.search).get('code');
 
-        if (code) {
-            fetch('/oauth', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({code})
-            })
-                .then(res => res.json())
-                .then(data => {
-                    localStorage.setItem('token', data);
-                    this.props.history.push('/content');
-                });
+            if (code) {
+                fetch('/oauth', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({code})
+                })
+                    .then(res => res.json())
+                    .then(token => {
+                        localStorage.setItem('token', token);
+                        this.props.history.push('/content');
+                    });
+            }
+        } else {
+            this.props.history.push('/content');
         }
     }
 

@@ -22,7 +22,7 @@ async function accessFriendsInfo(access_token) {
     const params = {
         count: 5,
         order: 'random',
-        fields: 'photo_100,last_seen',
+        fields: 'photo_50,last_seen',
         access_token: access_token,
         v: '5.124'
     }
@@ -51,8 +51,10 @@ app.post('/oauth',  async (req, res) => {
     res.json(accessToken);
 });
 
-app.post('/content', async (req, res) => {
-    const info = await accessFriendsInfo(accessToken);
+app.post('/friends', async (req, res) => {
+    const info = await accessFriendsInfo(req.body.token);
+
+    res.json(info);
 });
 
 server.listen(port, () => console.log(`Listening on port ${port}`));
