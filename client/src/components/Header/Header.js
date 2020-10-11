@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import './Header.css';
 
@@ -16,12 +15,14 @@ class Header extends React.Component {
     }
 
     render() {
+        const currentUser = this.props.currentUser;
+
         return (
             <div className="header">
-                {this.props.currentUser ?
+                {currentUser ?
                     <div>
-                        <img src={this.props.currentUser.photo_50} alt=''/>
-                        <span>{this.props.currentUser.first_name} {this.props.currentUser.last_name}</span>
+                        <img src={currentUser.photo_50} alt=''/>
+                        <span>{currentUser.first_name} {currentUser.last_name}</span>
                         <div className="header-right">
                             <button
                                 onClick={this.logOut}
@@ -33,7 +34,11 @@ class Header extends React.Component {
                 :
                     <div>
                         <div className="header-right">
-                            <Link to="/auth">Sign In</Link>
+                            <button
+                                onClick={this.props.signIn}
+                            >
+                                Sign In
+                            </button>
                         </div>
                     </div>
                 }

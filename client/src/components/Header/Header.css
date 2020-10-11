@@ -15,8 +15,12 @@ img {
     float: right;
 }
 
-.header a { text-decoration: none; color:#ffffff; }
-.header a:visited { text-decoration: none; color:#ffffff; }
-.header a:hover { text-decoration: none; color:#ffffff; }
-.header a:focus { text-decoration: none; color:#ffffff; }
-.header a:hover, a:active { text-decoration: none; color:#ffffff }
+button {
+    font-size: 25px;
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+}

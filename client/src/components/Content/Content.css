@@ -8,7 +8,7 @@
     height: 100px;
     margin: 10px;
     padding: 10px;
-    border: 2px solid darkgrey;
+    border: 2px solid #5190d4;
     border-radius: 10px;
 }
 
@@ -25,4 +25,12 @@
     display: inline-block;
     margin-left: 15px;
     margin-top: 15px;
+}
+
+.online {
+    color: #008000;
+}
+
+.offline {
+    color: #5c615c;
 }

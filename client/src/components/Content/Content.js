@@ -45,8 +45,13 @@ class Content extends React.Component {
                                 <img src={item.photo_100} alt=''/>
                             </div>
                             <div className='info'>
-                                <div>{item.first_name} {item.last_name}</div>
-                                <div>{item.online ? 'Online' : 'Offline'}</div>
+                                <div>
+                                    <a target='_blank' href={`https://vk.com/id${item.id}`}>{item.first_name} {item.last_name}</a>
+                                </div>
+                                {item.online ?
+                                    <div className='online'>Online</div>
+                                    :
+                                    <div className='offline'>Offline</div>}
                             </div>
                         </div>
                     })}
