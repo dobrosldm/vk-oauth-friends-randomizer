@@ -1,5 +1,7 @@
 import React from 'react';
-import Header from "../Header/Header";
+import Header from '../Header/Header';
+
+import './Auth.css'
 
 class Auth extends React.Component {
     constructor(props) {
@@ -41,7 +43,17 @@ class Auth extends React.Component {
         return (
             <div>
                 <Header history={this.props.history} signIn={this.signIn} />
-                <h2>Sign in with VKontakte</h2>
+                <div className="incomingMessage">
+                    <div className="block">
+                        Welcome!
+                    </div>
+                    <div className="block">
+                        Authenticate through VKontakte social network and get your 5 random friends
+                    </div>
+                    <div className="block">
+                        Maybe it's time to write them &#128521;
+                    </div>
+                </div>
             </div>
         );
     }

@@ -1,25 +1,45 @@
 .header {
     color: #ffffff;
-    overflow: hidden;
     background-color: #4a76a8;
-    text-align: left;
-    padding: 5px;
     height: 60px;
+}
+
+.leftPart {
+    margin: 5px 5px;
+    float: left;
+    width: 60%;
+    font-size: 25px;
+    position: relative;
+}
+
+.userName {
+    margin-left: 60px;
+    position: absolute;
+    top: 40%;
+    -ms-transform: translateY(-40%);
+    transform: translateY(-40%);
+}
+
+.rightPart {
+    height: 60px;
+    display: grid;
+    text-align: right;
+    float: right;
+    width: 20%;
 }
 
 img {
     border-radius: 50%;
 }
 
-.header-right {
-    float: right;
-}
-
 button {
-    font-size: 25px;
-    background: none!important;
-    border: none;
-    padding: 0!important;
+    margin: auto;
+    margin-right: 15px;
+    font-size: 20px;
+    background: none;
+    border: 1px solid #ffffff;
+    border-radius: 5%;
+    padding: 5px;
     color: #ffffff;
     text-decoration: none;
     cursor: pointer;

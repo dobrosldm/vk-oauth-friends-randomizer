@@ -1,5 +1,5 @@
 .friendsList {
-    font-size: 22px;
+    font-size: 25px;
     margin: auto;
     width: 500px;
 }
@@ -23,7 +23,7 @@
 .info {
     vertical-align: top;
     display: inline-block;
-    margin-left: 15px;
+    margin-left: 20px;
     margin-top: 15px;
 }
 

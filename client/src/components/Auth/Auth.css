@@ -1,3 +1,13 @@
-button {
-    text-decoration: none;
+.incomingMessage {
+    font-size: 30px;
+    text-align: center;
+    width: 50%;
+    border: 2px solid #5190d4;
+    border-radius: 5%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.block {
+    margin: 30px;
 }

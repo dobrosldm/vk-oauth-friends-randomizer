@@ -18,31 +18,30 @@ class Header extends React.Component {
         const currentUser = this.props.currentUser;
 
         return (
-            <div className="header">
-                {currentUser ?
-                    <div>
-                        <img src={currentUser.photo_50} alt=''/>
-                        <span>{currentUser.first_name} {currentUser.last_name}</span>
-                        <div className="header-right">
-                            <button
-                                onClick={this.logOut}
-                            >
-                                Log out
-                            </button>
-                        </div>
+            currentUser ?
+                <div className="header">
+                    <div className="leftPart">
+                        <img src={currentUser.photo_50} alt=""/>
+                        <div className="userName">{currentUser.first_name} {currentUser.last_name}</div>
                     </div>
-                :
-                    <div>
-                        <div className="header-right">
-                            <button
-                                onClick={this.props.signIn}
-                            >
-                                Sign In
-                            </button>
-                        </div>
+                    <div className="rightPart">
+                        <button
+                            onClick={this.logOut}
+                        >
+                            Log out
+                        </button>
                     </div>
-                }
-            </div>
+                </div>
+            :
+                <div className="header">
+                    <div className="rightPart">
+                        <button
+                            onClick={this.props.signIn}
+                        >
+                            Sign In
+                        </button>
+                    </div>
+                </div>
         );
     }
 }

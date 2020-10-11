@@ -1,7 +1,7 @@
 import React from 'react';
 
+import Header from '../Header/Header';
 import './Content.css';
-import Header from "../Header/Header";
 
 class Content extends React.Component {
     constructor() {
@@ -38,20 +38,20 @@ class Content extends React.Component {
         return(
             <div>
                 <Header history={this.props.history} currentUser={this.state.userInfo} />
-                <div className='friendsList'>
+                <div className="friendsList">
                     {this.state.friendsInfo.map((item, index) => {
-                        return <div key={index} className='friend'>
-                            <div className='avatar'>
+                        return <div key={index} className="friend">
+                            <div className="avatar">
                                 <img src={item.photo_100} alt=''/>
                             </div>
-                            <div className='info'>
+                            <div className="info">
                                 <div>
-                                    <a target='_blank' href={`https://vk.com/id${item.id}`}>{item.first_name} {item.last_name}</a>
+                                    <a target="_blank" href={`https://vk.com/id${item.id}`}>{item.first_name} {item.last_name}</a>
                                 </div>
                                 {item.online ?
-                                    <div className='online'>Online</div>
+                                    <div className="online">Online</div>
                                     :
-                                    <div className='offline'>Offline</div>}
+                                    <div className="offline">Offline</div>}
                             </div>
                         </div>
                     })}

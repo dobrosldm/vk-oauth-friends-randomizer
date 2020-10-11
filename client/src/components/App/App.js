@@ -4,8 +4,6 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import Auth from '../Auth/Auth';
 import Content from '../Content/Content';
 
-import './App.css';
-
 class App extends React.Component {
     render() {
         const { history } = this.props;
