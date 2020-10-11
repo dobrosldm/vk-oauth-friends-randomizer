@@ -11,9 +11,16 @@ class Auth extends React.Component {
     }
 
     async signIn() {
-        window.location.href = 'https://oauth.vk.com/authorize?'
-            +'client_id=7620607&display=page&redirect_uri=http://localhost:3000/auth&scope=friends,offline'
-            +'&response_type=code&v=5.124';
+        const params = {
+            client_id: 7620607,
+            display: 'page',
+            redirect_uri: 'http://localhost:3000/auth',
+            scope: 'friends,offline',
+            response_type: 'code',
+            v: '5.124'
+        };
+
+        window.location.href = 'https://oauth.vk.com/authorize?' + new URLSearchParams(params).toString();
     }
 
     componentDidMount() {

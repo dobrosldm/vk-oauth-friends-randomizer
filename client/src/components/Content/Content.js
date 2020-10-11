@@ -9,34 +9,46 @@ class Content extends React.Component {
 
         this.state = {
             userInfo: {},
-            friendsInfo: []
+            friendsInfo: [],
+            loading: true
         }
+
+        this.getFriendsInfo = this.getFriendsInfo.bind(this);
     }
 
     componentDidMount() {
         const token = localStorage.getItem('token');
 
         if (token) {
-            fetch('/friends', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({token})
-            })
-                .then(res => res.json())
-                .then(data => {
-                    this.setState({userInfo: data.userInfo});
-                    this.setState({friendsInfo: data.friendsInfo});
-                });
+            this.getFriendsInfo();
         } else {
             this.props.history.push('/auth');
         }
     }
 
+    async getFriendsInfo() {
+        this.setState({loading: true});
+        const token = localStorage.getItem('token');
+
+        await fetch('/friends', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({token})
+        })
+            .then(res => res.json())
+            .then(data => {
+                this.setState({userInfo: data.userInfo});
+                this.setState({friendsInfo: data.friendsInfo});
+            });
+
+        this.setState({loading: false});
+    }
+
     render() {
         return(
-            <div>
+            <div className="content">
                 <Header history={this.props.history} currentUser={this.state.userInfo} />
                 <div className="friendsList">
                     {this.state.friendsInfo.map((item, index) => {
@@ -56,6 +68,12 @@ class Content extends React.Component {
                         </div>
                     })}
                 </div>
+                <button
+                    onClick={this.getFriendsInfo}
+                    disabled={this.state.loading}
+                >
+                    { this.state.loading ? 'Loading...' : 'Try again' }
+                </button>
             </div>
         );
     }

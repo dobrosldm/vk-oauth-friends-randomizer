@@ -34,3 +34,29 @@
 .offline {
     color: #5c615c;
 }
+
+.content > button {
+    background-color: #5190d4;
+    border: none;
+    border-radius: 5%;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    margin: 20px auto;
+    display: block;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.content > button {
+    background-color: white;
+    color: black;
+    border: 2px solid #5190d4;
+}
+
+.content > button:hover {
+    background-color: #5190d4;
+    color: white;
+}
