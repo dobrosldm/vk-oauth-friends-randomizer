@@ -1,14 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Content extends Component {
-    constructor(props) {
-        super(props);
+import './Content.css';
+import Header from "../Header/Header";
+
+class Content extends React.Component {
+    constructor() {
+        super();
 
         this.state = {
-            data: []
+            userInfo: {},
+            friendsInfo: []
         }
-
-        this.logOut = this.logOut.bind(this);
     }
 
     componentDidMount() {
@@ -24,36 +26,32 @@ class Content extends Component {
             })
                 .then(res => res.json())
                 .then(data => {
-                    this.setState({data});
+                    this.setState({userInfo: data.userInfo});
+                    this.setState({friendsInfo: data.friendsInfo});
                 });
         } else {
             this.props.history.push('/auth');
         }
     }
 
-    logOut() {
-        localStorage.removeItem('token');
-        this.props.history.push('/auth');
-    }
-
     render() {
         return(
-            <li>
-                {this.state.data.map((item, index) => {
-                    return <div key={index}>
-                        <span>{item.first_name} {item.last_name}</span>
-                        <br/>
-                        <span>{item.online ? 'Online' : 'Offline'}</span>
-                        <br/>
-                        <img src={item.photo_50} alt=''/>
-                    </div>
-                })}
-                <button
-                    onClick={this.logOut}
-                >
-                    Log out
-                </button>
-            </li>
+            <div>
+                <Header history={this.props.history} currentUser={this.state.userInfo} />
+                <div className='friendsList'>
+                    {this.state.friendsInfo.map((item, index) => {
+                        return <div key={index} className='friend'>
+                            <div className='avatar'>
+                                <img src={item.photo_100} alt=''/>
+                            </div>
+                            <div className='info'>
+                                <div>{item.first_name} {item.last_name}</div>
+                                <div>{item.online ? 'Online' : 'Offline'}</div>
+                            </div>
+                        </div>
+                    })}
+                </div>
+            </div>
         );
     }
 }

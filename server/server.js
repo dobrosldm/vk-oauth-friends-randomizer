@@ -18,12 +18,12 @@ function formUrl(resource, path, params) {
     return url;
 }
 
-async function accessFriendsInfo(access_token) {
+async function getFriendsInfo(accessToken) {
     const params = {
         count: 5,
         order: 'random',
-        fields: 'photo_50,last_seen',
-        access_token: access_token,
+        fields: 'photo_100,last_seen',
+        access_token: accessToken,
         v: '5.124'
     }
     const url = formUrl('api.vk.com', 'method/friends.get', params);
@@ -33,6 +33,21 @@ async function accessFriendsInfo(access_token) {
     const info = json.response.items;
 
     return info;
+}
+
+async function getCurrentUserInfo(accessToken) {
+    const params = {
+        fields: 'photo_50',
+        access_token: accessToken,
+        v: '5.124'
+    }
+    const url = formUrl('api.vk.com', 'method/users.get', params);
+
+    const response = await fetch(url);
+    const json = await response.json();
+    const currentUserInfo = json.response[0];
+
+    return currentUserInfo;
 }
 
 app.post('/oauth',  async (req, res) => {
@@ -52,9 +67,17 @@ app.post('/oauth',  async (req, res) => {
 });
 
 app.post('/friends', async (req, res) => {
-    const info = await accessFriendsInfo(req.body.token);
+    const accessToken = req.body.token;
 
-    res.json(info);
+    const userInfo = await getCurrentUserInfo(accessToken);
+    const friendsInfo = await getFriendsInfo(accessToken);
+
+    const data = {
+        userInfo,
+        friendsInfo
+    };
+
+    res.json(data);
 });
 
 server.listen(port, () => console.log(`Listening on port ${port}`));

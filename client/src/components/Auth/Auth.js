@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Header from "../Header/Header";
 
-class Auth extends Component {
+class Auth extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            signed: false
-        };
 
         this.onSignIn = this.onSignIn.bind(this);
     }
@@ -41,7 +39,8 @@ class Auth extends Component {
 
     render() {
         return (
-            <div className="App">
+            <div>
+                <Header history={this.props.history} />
                 <h2>Sign in with VKontakte</h2>
                 <button
                     onClick={this.onSignIn}
