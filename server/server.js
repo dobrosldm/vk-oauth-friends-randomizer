@@ -1,6 +1,7 @@
 const express = require("express");
 const http = require("http");
 const fetch = require("node-fetch");
+require("dotenv").config();
 
 const app = express();
 const server = http.createServer(app);

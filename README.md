@@ -31,3 +31,11 @@ npm start
 
 # Server runs on http://localhost:5000 and client on http://localhost:3000
 ```
+
+## Configuring environment variables
+Create .env file in server directory with the following content
+```
+APP_ID=*******
+APP_SECRET=********************
+CLIENT_HOST=http://localhost:3000
+```

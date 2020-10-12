@@ -1,17 +1,16 @@
 {
   "name": "server",
   "version": "0.1.0",
-  "private": false,
   "scripts": {
-    "dev": "cross-env APP_ID=7620607 APP_SECRET=LBzU9O5zMtCI3c8r3Gn7 CLIENT_HOST=http://localhost:3000 SERVER_HOST=http://localhost:5000 nodemon server.js",
-    "prod": "cross-env APP_ID=7620607 APP_SECRET=LBzU9O5zMtCI3c8r3Gn7 CLIENT_HOST=http://localhost:3000 SERVER_HOST=http://localhost:5000 node server.js"
+    "dev": "nodemon server.js",
+    "prod": "node server.js"
   },
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "~4.16.1",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
-    "cross-env": "^7.0.2",
     "nodemon": "^2.0.4"
   }
 }
