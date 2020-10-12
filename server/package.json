@@ -1,13 +1,12 @@
 {
   "name": "server",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.1.0",
+  "private": false,
   "scripts": {
     "dev": "cross-env APP_ID=7620607 APP_SECRET=LBzU9O5zMtCI3c8r3Gn7 CLIENT_HOST=http://localhost:3000 SERVER_HOST=http://localhost:5000 nodemon server.js",
     "prod": "cross-env APP_ID=7620607 APP_SECRET=LBzU9O5zMtCI3c8r3Gn7 CLIENT_HOST=http://localhost:3000 SERVER_HOST=http://localhost:5000 node server.js"
   },
   "dependencies": {
-    "cookie-parser": "~1.4.4",
     "express": "~4.16.1",
     "node-fetch": "^2.6.1"
   },
