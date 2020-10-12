@@ -6,6 +6,9 @@
 # Clone project
 git clone https://github.com/dobrosldm/vk-oauth-friends-randomizer.git
 
+# Go to project folder
+cd vk-oauth-friends-randomizer
+
 # In Terminal 1
 # Change directory to server
 cd server
