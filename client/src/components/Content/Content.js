@@ -14,21 +14,15 @@ class Content extends React.Component {
         }
 
         this.getFriendsInfo = this.getFriendsInfo.bind(this);
+        this.updateList = this.updateList.bind(this);
     }
 
     componentDidMount() {
-        const token = localStorage.getItem('token');
-
-        if (token) {
-            this.getFriendsInfo();
-        } else {
-            this.props.history.push('/auth');
-        }
+        this.updateList();
     }
 
-    async getFriendsInfo() {
+    async getFriendsInfo(token) {
         this.setState({loading: true});
-        const token = localStorage.getItem('token');
 
         await fetch('/friends', {
             method: 'POST',
@@ -46,6 +40,16 @@ class Content extends React.Component {
         this.setState({loading: false});
     }
 
+    updateList() {
+        const token = localStorage.getItem('token');
+
+        if (token) {
+            this.getFriendsInfo(token);
+        } else {
+            this.props.history.push('/auth');
+        }
+    }
+
     render() {
         return(
             <div className="content">
@@ -54,11 +58,13 @@ class Content extends React.Component {
                     {this.state.friendsInfo.map((item, index) => {
                         return <div key={index} className="friend">
                             <div className="avatar">
-                                <img src={item.photo_100} alt=''/>
+                                <img src={item.photo_100} alt=""/>
                             </div>
                             <div className="info">
                                 <div>
-                                    <a target="_blank" href={`https://vk.com/id${item.id}`}>{item.first_name} {item.last_name}</a>
+                                    <a target="_blank" rel="noopener noreferrer" href={`https://vk.com/id${item.id}`}>
+                                        {item.first_name} {item.last_name}
+                                    </a>
                                 </div>
                                 {item.online ?
                                     <div className="online">Online</div>
@@ -69,7 +75,7 @@ class Content extends React.Component {
                     })}
                 </div>
                 <button
-                    onClick={this.getFriendsInfo}
+                    onClick={this.updateList}
                     disabled={this.state.loading}
                 >
                     { this.state.loading ? 'Loading...' : 'Try again' }

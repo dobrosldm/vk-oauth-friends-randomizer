@@ -58,7 +58,7 @@ class Auth extends React.Component {
                         Authenticate through VKontakte social network and get your 5 random friends
                     </div>
                     <div className="block">
-                        Maybe it's time to write them &#128521;
+                        Maybe it's time to write them <span role="img" aria-label="winking">&#128521;</span>
                     </div>
                 </div>
             </div>
